@@ -1,6 +1,6 @@
 # Favorite Places Flutter App
 
-This app was built during passing the [Sections 13](https://www.udemy.com/course/learn-flutter-dart-to-build-ios-android-apps/learn/lecture/37214954#overview) of the "Flutter & Dart - The Complete Guide [2024 Edition.]" course.
+This app was built during passing the [Section 13](https://www.udemy.com/course/learn-flutter-dart-to-build-ios-android-apps/learn/lecture/37214954#overview) of the "Flutter & Dart - The Complete Guide [2024 Edition.]" course.
 
 A few useful resources:
 
