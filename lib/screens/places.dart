@@ -25,10 +25,14 @@ class _PlacesScreenState extends ConsumerState<PlacesScreen> {
   @override
   Widget build(BuildContext context) {
     final userPlaces = ref.watch(userPlacesProvider);
+    const double textScaler = 1.0;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your Places'),
+        title: const Text(
+          'Your Places',
+          textScaler: TextScaler.linear(textScaler),
+        ),
         centerTitle: true,
         actions: [
           IconButton(

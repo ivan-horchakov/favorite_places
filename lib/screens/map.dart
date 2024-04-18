@@ -23,11 +23,16 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   LatLng? _pickedLocation;
+  static const double textScaler = 1.0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.isSelecting ? 'Pick your location' : 'Your Location'),
+        title: Text(
+          widget.isSelecting ? 'Pick your location' : 'Your Location',
+          textScaler: const TextScaler.linear(textScaler),
+        ),
         centerTitle: true,
         actions: [
           if (widget.isSelecting)

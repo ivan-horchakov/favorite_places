@@ -6,18 +6,24 @@ class PlaceDetailScreen extends StatelessWidget {
   const PlaceDetailScreen({super.key, required this.place});
 
   final Place place;
+  final String _expiredKey = 'AIzaSyC8EHVjhG9qJ5vRJsCsH37fNLpVD5GT2BA';
 
   String get locationImage {
     final lat = place.location.latitude;
     final lng = place.location.longitude;
-    return 'https://maps.googleapis.com/maps/api/staticmap?center=$lat,$lng&zoom=15&size=600x300&maptype=roadmap&markers=color:red%7Clabel:A%7C$lat,$lng&key=AIzaSyC8EHVjhG9qJ5vRJsCsH37fNLpVD5GT2BA';
+    return 'https://maps.googleapis.com/maps/api/staticmap?center=$lat,$lng&zoom=15&size=600x300&maptype=roadmap&markers=color:red%7Clabel:A%7C$lat,$lng&key=$_expiredKey';
   }
 
   @override
   Widget build(BuildContext context) {
+    const double textScaler = 1.0;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(place.title),
+        title: Text(
+          place.title,
+          textScaler: const TextScaler.linear(textScaler),
+        ),
         centerTitle: true,
       ),
       body: Stack(
@@ -72,6 +78,7 @@ class PlaceDetailScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           color: Theme.of(context).colorScheme.onBackground,
                         ),
+                    textScaler: const TextScaler.linear(textScaler),
                   ),
                 ),
               ],

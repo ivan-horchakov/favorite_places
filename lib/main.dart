@@ -1,7 +1,7 @@
 import 'package:favorite_places/screens/places.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 
 final colorScheme = ColorScheme.fromSeed(
@@ -27,19 +27,24 @@ final theme = ThemeData().copyWith(
 );
 
 void main() {
-  runApp(
-    const ProviderScope(
-      child: MyApp(),
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
+    (value) => runApp(
+      const ProviderScope(
+        child: FavoritePlacesApp(),
+      ),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class FavoritePlacesApp extends StatelessWidget {
+  const FavoritePlacesApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Great Places',
       theme: theme,
       home: const PlacesScreen(),

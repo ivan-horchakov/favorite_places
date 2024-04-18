@@ -4,8 +4,8 @@ import 'package:favorite_places/models/place.dart';
 import 'package:favorite_places/screens/map.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
 import 'package:http/http.dart' as http;
+import 'package:location/location.dart';
 
 class LocationInput extends StatefulWidget {
   const LocationInput({super.key, required this.onSelectLocation});
@@ -21,6 +21,7 @@ class LocationInput extends StatefulWidget {
 class _LocationInputState extends State<LocationInput> {
   PlaceLocation? _pickedLocation;
   var _isGettingLocation = false;
+  final String _expiredKey = 'AIzaSyC8EHVjhG9qJ5vRJsCsH37fNLpVD5GT2BA';
 
   String get locationImage {
     if (_pickedLocation == null) {
@@ -28,12 +29,12 @@ class _LocationInputState extends State<LocationInput> {
     }
     final lat = _pickedLocation!.latitude;
     final lng = _pickedLocation!.longitude;
-    return 'https://maps.googleapis.com/maps/api/staticmap?center=$lat,$lng&zoom=15&size=600x300&maptype=roadmap&markers=color:red%7Clabel:A%7C$lat,$lng&key=AIzaSyC8EHVjhG9qJ5vRJsCsH37fNLpVD5GT2BA';
+    return 'https://maps.googleapis.com/maps/api/staticmap?center=$lat,$lng&zoom=15&size=600x300&maptype=roadmap&markers=color:red%7Clabel:A%7C$lat,$lng&key=$_expiredKey';
   }
 
   Future<void> _savePlace(double latitude, double longitude) async {
     final url = Uri.parse(
-      'https://maps.googleapis.com/maps/api/geocode/json?latlng=$latitude,$longitude&key=AIzaSyC8EHVjhG9qJ5vRJsCsH37fNLpVD5GT2BA',
+      'https://maps.googleapis.com/maps/api/geocode/json?latlng=$latitude,$longitude&key=$_expiredKey',
     );
     final response = await http.get(url);
     final resData = jsonDecode(response.body);
@@ -107,12 +108,15 @@ class _LocationInputState extends State<LocationInput> {
 
   @override
   Widget build(BuildContext context) {
+    const double textScaler = 1.0;
+
     Widget previewContent = Text(
       'No location chosen',
       textAlign: TextAlign.center,
       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
             color: Theme.of(context).colorScheme.onBackground,
           ),
+      textScaler: const TextScaler.linear(textScaler),
     );
 
     if (_pickedLocation != null) {
@@ -148,12 +152,18 @@ class _LocationInputState extends State<LocationInput> {
             TextButton.icon(
               onPressed: _getCurrentLocation,
               icon: const Icon(Icons.location_on),
-              label: const Text('Get Current Location'),
+              label: const Text(
+                'Get Current Location',
+                textScaler: TextScaler.linear(textScaler),
+              ),
             ),
             TextButton.icon(
               onPressed: _selectOnMap,
               icon: const Icon(Icons.map),
-              label: const Text('Select Location on Map'),
+              label: const Text(
+                'Select Location',
+                textScaler: TextScaler.linear(textScaler),
+              ),
             ),
           ],
         ),

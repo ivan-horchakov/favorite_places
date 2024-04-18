@@ -9,6 +9,8 @@ class PlacesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const double textScaler = 1.0;
+
     if (places.isEmpty) {
       return Center(
         child: Text(
@@ -16,6 +18,7 @@ class PlacesList extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                 color: Theme.of(context).colorScheme.onBackground,
               ),
+          textScaler: const TextScaler.linear(textScaler),
         ),
       );
     }
@@ -33,12 +36,14 @@ class PlacesList extends StatelessWidget {
             style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   color: Theme.of(context).colorScheme.onBackground,
                 ),
+            textScaler: const TextScaler.linear(textScaler),
           ),
           subtitle: Text(
             places[index].location.address,
             style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   color: Theme.of(context).colorScheme.onBackground,
                 ),
+            textScaler: const TextScaler.linear(textScaler),
           ),
           onTap: () {
             Navigator.of(context).push(

@@ -1,8 +1,10 @@
-# Favorite Places Flutter App
+# Flutter Favorite Places App
 
-This app was built during passing the [Section 13](https://www.udemy.com/course/learn-flutter-dart-to-build-ios-android-apps/learn/lecture/37214954#overview) of the "Flutter & Dart - The Complete Guide [2024 Edition.]" course.
+Flutter Favorite Places App (camera, location) with Riverpod SM. Optimized for Android & iOS mobile devices.
 
-A few useful resources:
+This app was built while passing the "Section 13" of the "Flutter & Dart - The Complete Guide [2024 Edition.]" course on Udemy.
+
+A few useful resources for starters:
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
